@@ -1,19 +1,22 @@
-from django.shortcuts import HttpResponse
-
+from django.shortcuts import render
+from posts.models import Post
 
 # Create your views here.
 
 
 def main_view(request):
     if request.method == 'GET':
-        return HttpResponse("Hello!👋 It's my project")
+        return render(request, 'layouts/index.html')
 
 
-def now_date(request):
+def posts_view(request):
     if request.method == 'GET':
-        return HttpResponse('10 Jan')
+        posts = Post.objects.all()
 
+        context = {
+            'posts': posts,
+            'message': 'It is message from view'
+        }
 
-def goodbye_view(request):
-    if request.method == 'GET':
-        return HttpResponse('Goodbye!')
+        return render(request, 'posts/posts.html', context=context)
+
