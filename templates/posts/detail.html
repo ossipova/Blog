@@ -1,0 +1,45 @@
+{% extends 'layouts/index.html' %}
+
+{% block content %}
+    <style type="text/css">
+    .post {
+        width: 80%;
+        margin-left: 10%;
+    }
+    .post > h1 {
+        color: cadetblue;
+    }
+    .dates {
+        display: flex;
+        justify-content: space-between;
+    }
+    .comments_title {
+        margin-top: 20px;
+    }
+    .comment {
+        background: darkgray;
+        padding: 10px;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    </style>
+    <div class="post">
+    <h1>{{ post.title }}</h1>
+    <h5>{{ post.description }}</h5>
+    <h5>Rate👍👎:   {{ post.rate }}</h5>
+    <div class="dates">
+        <h5>{{ post.create_date }}</h5>
+        <h5>{{ post.modified_date }}</h5>
+    </div>
+    <h5 class="comments_title">Comments:</h5>
+    <div class="comments">
+        {% for comment in comments %}
+            <div class="comment">
+            <h5>{{ comment.text }}</h5>
+            <p>{{ comment.created_date }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}

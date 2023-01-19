@@ -10,3 +10,9 @@ class Post(models.Model):
     rate = models.FloatField()
     create_date = models.DateField(auto_now_add=True)
     modified_date = models.DateField(auto_now=True)
+
+
+class Comment (models.Model):
+    text = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
